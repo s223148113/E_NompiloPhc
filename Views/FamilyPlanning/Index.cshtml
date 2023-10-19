@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>Welcome to Your Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Family Planning</h3>
+        <p>Find the best contraceptive method based on your preferences and medical history.</p>
+        <a class="btn btn-primary" href="@Url.Action("ChooseMethod", "FamilyPlanning")">Go to Family Planning</a>
+    </div>
+
+    <div class="col-md-6">
+        <h3>Fertility Tracking</h3>
+        <p>Track your fertility and menstrual cycle to plan or avoid pregnancy.</p>
+        <a class="btn btn-primary" href="@Url.Action("EnterData", "Fertility")">Go to Fertility Tracking</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Counseling</h3>
+        <p>Access counseling and support resources for pregnancy planning and more.</p>
+        <a class="btn btn-primary" href="@Url.Action("FindCounselor", "Counseling")">Find a Counselor</a>
+    </div>
+ </div>
+<div class="col-md-6">
+    <h3>Family Planning</h3>
+    <p>Explore contraceptive methods and find the right one for you.</p>
+    <a class="btn btn-primary" href="@Url.Action("ContraceptiveMethods", "FamilyPlanning")">Contraceptive Methods</a>
+</div>

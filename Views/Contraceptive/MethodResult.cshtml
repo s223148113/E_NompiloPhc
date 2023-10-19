@@ -1,0 +1,17 @@
+﻿@model E_NompiloPhc.Models.FamilyPlanning.Contraceptive
+@{
+    ViewData["Title"] = "Selected Contraceptive Method";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h3>Selected Contraceptive Method</h3>
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Description:</strong> @Model.Description</p>
+    <!-- Add more details about the selected contraceptive method here -->
+</div>
+
+<p>
+    <a asp-action="ChooseMethod">Back to Preferences</a>
+</p>

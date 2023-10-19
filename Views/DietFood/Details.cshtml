@@ -1,0 +1,75 @@
+﻿@model E_NompiloPhc.Models.Nutrition.FoodExchange
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+    <div>
+        <h4>FoodExchange</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DietDiscription)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DietDiscription)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Breakfast)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Breakfast)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.AMSnack)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AMSnack)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Lunch)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Lunch)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PMSnack)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PMSnack)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DinnerSupper)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DinnerSupper)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TotalItems)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TotalItems)
+            </dd>
+            @* <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PatientInfo)
+            </dt>
+            <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PatientInfo.Address)
+            </dd>*@
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.FoodExchangeID">Edit</a> |
+        <a asp-action="Details2" asp-controller="PatientInfos" asp-route-PatientInfoID="@ViewBag.PatientInfoID">Back</a>
+    </div>
+</body>
+</html>

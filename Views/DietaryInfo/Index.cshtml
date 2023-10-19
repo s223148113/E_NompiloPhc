@@ -1,0 +1,164 @@
+﻿@model IEnumerable<E_NompiloPhc.Models.Nutrition.DietaryInfo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BreakfastFood)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BreakfastMethod)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BreakfastAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BreakfastTotalCalories)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AMSnackFood)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AMSnackMethod)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AMSnackAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AMSnacktotalclories)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LunchFood)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LunchMethod)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LunchAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LunchTotalCalories)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PMSnackFood)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PMSnackMethod)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PMSnackAmout)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PMSnackTotalCalories)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DinnerFood)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DinnerMethod)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DinnerAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DinnerTotalCalories)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientInfo)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BreakfastFood)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BreakfastMethod)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BreakfastAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BreakfastTotalCalories)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AMSnackFood)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AMSnackMethod)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AMSnackAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AMSnacktotalclories)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LunchFood)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LunchMethod)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LunchAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LunchTotalCalories)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PMSnackFood)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PMSnackMethod)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PMSnackAmout)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PMSnackTotalCalories)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DinnerFood)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DinnerMethod)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DinnerAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DinnerTotalCalories)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatientInfo.Address)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.DietaryInfoID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.DietaryInfoID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.DietaryInfoID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

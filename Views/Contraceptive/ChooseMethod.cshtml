@@ -1,0 +1,17 @@
+﻿@model E_NompiloPhc.Models.FamilyPlanning.ContraceptivePreferencesViewModel
+@{
+    ViewData["Title"] = "Choose Contraceptive Method";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="CalculateMethod">
+    <div class="form-group">
+        <label asp-for="UserAge">Age:</label>
+        <input asp-for="UserAge" class="form-control" />
+    </div>
+
+    <!-- Add more form fields for collecting user preferences and medical history -->
+
+    <button type="submit" class="btn btn-primary">Calculate</button>
+</form>

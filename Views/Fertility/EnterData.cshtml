@@ -1,0 +1,18 @@
+﻿@model E_NompiloPhc.Models.FamilyPlanning.FertilityDataViewModel
+@{
+    ViewData["Title"] = "Enter Fertility Tracking Data";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="ProcessData">
+    <div class="form-group">
+        <label asp-for="MenstrualCycleLength">Menstrual Cycle Length (days):</label>
+        <input asp-for="MenstrualCycleLength" class="form-control" />
+        <span asp-validation-for="MenstrualCycleLength" class="text-danger"></span>
+    </div>
+
+    <!-- Add more form fields for entering fertility tracking data -->
+
+    <button type="submit" class="btn btn-primary">Generate Insights</button>
+</form>

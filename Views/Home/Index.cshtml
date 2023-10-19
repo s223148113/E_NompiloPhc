@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using E_NompiloPhc.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+
+
+@model E_NompiloPhc.Areas.Identity.Data.ApplicationUser
+
+@{
+    ViewData["Title"] = "Home Dashboard";
+}
+
+
+
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h2>Welcome, @UserManager.FindByNameAsync(User.Identity.Name).Result.FirstName!</h2>
+
+    <p>Here's your user dashboard. You can customize this view to display user-specific information and actions.</p>
+
+    <a asp-controller="Account" asp-action="Logout">Logout</a>
+    
+}
+

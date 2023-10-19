@@ -1,0 +1,67 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+ 
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+.ITGeeksTable table {
+    width: 100%
+}
+
+.ITGeeksTable thead {
+    width: calc(100%-1em);
+}
+
+.ITGeeksTable tbody {
+    display: block;
+    height: 130px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+    .ITGeeksTable thead, .ITGeeksTable tbody tr {
+        display: table;
+        width: 98%;
+        table-layout: fixed;
+    }
+
+.ITGeeksTable thead, .ITGeeksTable tbody, .ITGeeksTable td {
+    border: none !important;
+}
+
+.QtyTotal {
+    background-image: none;
+}
+
+.ForeignPriceTotal {
+    background-image: none;
+}
+
+.PriceTotal {
+    background-image: none;
+}
+
+.AmountTotal {
+    background-image: none;
+}
+

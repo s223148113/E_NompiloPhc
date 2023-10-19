@@ -1,0 +1,17 @@
+﻿@model E_NompiloPhc.Models.FamilyPlanning.FertilityInsightsViewModel
+@{
+    ViewData["Title"] = "Fertility Insights";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h3>Fertility Insights</h3>
+    <p><strong>Most Fertile Days:</strong> @Model.MostFertileDays</p>
+    <p><strong>Ovulation Date:</strong> @Model.OvulationDate</p>
+    <!-- Add more fertility insights properties here -->
+</div>
+
+<p>
+    <a asp-action="EnterData">Back to Fertility Tracking</a>
+</p>
