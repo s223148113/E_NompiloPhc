@@ -1,0 +1,83 @@
+﻿@model E_NompiloPhc.Models.GBV.RefillDelivery
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+<h4>RefillDelivery</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="PatientEmail" class="control-label"></label>
+                <input asp-for="PatientEmail" class="form-control" />
+                <span asp-validation-for="PatientEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliverName" class="control-label"></label>
+                <input asp-for="DeliverName" class="form-control" />
+                <span asp-validation-for="DeliverName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliverLastName" class="control-label"></label>
+                <input asp-for="DeliverLastName" class="form-control" />
+                <span asp-validation-for="DeliverLastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryDepartment" class="control-label"></label>
+                <input asp-for="DeliveryDepartment" class="form-control" />
+                <span asp-validation-for="DeliveryDepartment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartDate" class="control-label"></label>
+                <input asp-for="DepartDate" class="form-control" />
+                <span asp-validation-for="DepartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryArrival" class="control-label"></label>
+                <input asp-for="DeliveryArrival" class="form-control" />
+                <span asp-validation-for="DeliveryArrival" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PHCName" class="control-label"></label>
+                <input asp-for="PHCName" class="form-control" />
+                <span asp-validation-for="PHCName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DoctorApprover" class="control-label"></label>
+                <input asp-for="DoctorApprover" class="form-control" />
+                <span asp-validation-for="DoctorApprover" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliverYesNo" class="control-label"></label>
+                <input asp-for="DeliverYesNo" class="form-control" />
+                <span asp-validation-for="DeliverYesNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

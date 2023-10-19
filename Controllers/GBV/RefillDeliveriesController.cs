@@ -1,28 +1,33 @@
-﻿using E_NompiloPhc.Areas.Identity.Data;
-using E_NompiloPhc.Models.GBV;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using E_NompiloPhc.Areas.Identity.Data;
+using E_NompiloPhc.Models.GBV;
 
 namespace E_NompiloPhc.Controllers.GBV
 {
-    public class MedicationRefillDeliveriesController : Controller
+    public class RefillDeliveriesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public MedicationRefillDeliveriesController(ApplicationDbContext context)
+        public RefillDeliveriesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: MedicationRefillDeliveries
+        // GET: RefillDeliveries
         public async Task<IActionResult> Index()
         {
-            return _context.MedicationRefillDelivery != null ?
-                        View(await _context.MedicationRefillDelivery.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.MedicationRefillDelivery'  is null.");
+              return _context.MedicationRefillDelivery != null ? 
+                          View(await _context.MedicationRefillDelivery.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.MedicationRefillDelivery'  is null.");
         }
 
-        // GET: MedicationRefillDeliveries/Details/5
+        // GET: RefillDeliveries/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.MedicationRefillDelivery == null)
@@ -30,39 +35,39 @@ namespace E_NompiloPhc.Controllers.GBV
                 return NotFound();
             }
 
-            var medicationRefillDelivery = await _context.MedicationRefillDelivery
+            var refillDelivery = await _context.MedicationRefillDelivery
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (medicationRefillDelivery == null)
+            if (refillDelivery == null)
             {
                 return NotFound();
             }
 
-            return View(medicationRefillDelivery);
+            return View(refillDelivery);
         }
 
-        // GET: MedicationRefillDeliveries/Create
+        // GET: RefillDeliveries/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: MedicationRefillDeliveries/Create
+        // POST: RefillDeliveries/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] RefillDelivery medicationRefillDelivery)
+        public async Task<IActionResult> Create([Bind("Id,PatientEmail,DeliverName,DeliverLastName,DeliveryDepartment,DepartDate,DeliveryArrival,PHCName,DoctorApprover,DeliverYesNo")] RefillDelivery refillDelivery)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(medicationRefillDelivery);
+                _context.Add(refillDelivery);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicationRefillDelivery);
+            return View(refillDelivery);
         }
 
-        // GET: MedicationRefillDeliveries/Edit/5
+        // GET: RefillDeliveries/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.MedicationRefillDelivery == null)
@@ -70,22 +75,22 @@ namespace E_NompiloPhc.Controllers.GBV
                 return NotFound();
             }
 
-            var medicationRefillDelivery = await _context.MedicationRefillDelivery.FindAsync(id);
-            if (medicationRefillDelivery == null)
+            var refillDelivery = await _context.MedicationRefillDelivery.FindAsync(id);
+            if (refillDelivery == null)
             {
                 return NotFound();
             }
-            return View(medicationRefillDelivery);
+            return View(refillDelivery);
         }
 
-        // POST: MedicationRefillDeliveries/Edit/5
+        // POST: RefillDeliveries/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] RefillDelivery medicationRefillDelivery)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PatientEmail,DeliverName,DeliverLastName,DeliveryDepartment,DepartDate,DeliveryArrival,PHCName,DoctorApprover,DeliverYesNo")] RefillDelivery refillDelivery)
         {
-            if (id != medicationRefillDelivery.Id)
+            if (id != refillDelivery.Id)
             {
                 return NotFound();
             }
@@ -94,12 +99,12 @@ namespace E_NompiloPhc.Controllers.GBV
             {
                 try
                 {
-                    _context.Update(medicationRefillDelivery);
+                    _context.Update(refillDelivery);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MedicationRefillDeliveryExists(medicationRefillDelivery.Id))
+                    if (!RefillDeliveryExists(refillDelivery.Id))
                     {
                         return NotFound();
                     }
@@ -110,10 +115,10 @@ namespace E_NompiloPhc.Controllers.GBV
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicationRefillDelivery);
+            return View(refillDelivery);
         }
 
-        // GET: MedicationRefillDeliveries/Delete/5
+        // GET: RefillDeliveries/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.MedicationRefillDelivery == null)
@@ -121,17 +126,17 @@ namespace E_NompiloPhc.Controllers.GBV
                 return NotFound();
             }
 
-            var medicationRefillDelivery = await _context.MedicationRefillDelivery
+            var refillDelivery = await _context.MedicationRefillDelivery
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (medicationRefillDelivery == null)
+            if (refillDelivery == null)
             {
                 return NotFound();
             }
 
-            return View(medicationRefillDelivery);
+            return View(refillDelivery);
         }
 
-        // POST: MedicationRefillDeliveries/Delete/5
+        // POST: RefillDeliveries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -140,20 +145,19 @@ namespace E_NompiloPhc.Controllers.GBV
             {
                 return Problem("Entity set 'ApplicationDbContext.MedicationRefillDelivery'  is null.");
             }
-            var medicationRefillDelivery = await _context.MedicationRefillDelivery.FindAsync(id);
-            if (medicationRefillDelivery != null)
+            var refillDelivery = await _context.MedicationRefillDelivery.FindAsync(id);
+            if (refillDelivery != null)
             {
-                _context.MedicationRefillDelivery.Remove(medicationRefillDelivery);
+                _context.MedicationRefillDelivery.Remove(refillDelivery);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MedicationRefillDeliveryExists(int id)
+        private bool RefillDeliveryExists(int id)
         {
-            return (_context.MedicationRefillDelivery?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.MedicationRefillDelivery?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
-
 }

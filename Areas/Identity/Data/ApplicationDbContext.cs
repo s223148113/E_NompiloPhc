@@ -89,8 +89,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         //            .OnDelete(DeleteBehavior.Cascade);
     }
     public override DbSet<IdentityRole>? Roles { get; set; }
-    public DbSet<WalkInAppointment>? WalkInAppointment { get; set; }
-    public DbSet<VirtualAppointment>? VirtualAppointment { get; set; }
+    
+    public DbSet<UserAppointment>? VirtualAppointment { get; set; }
     public DbSet<PHCMedicationRefill>? PHCMedicationRefill { get; set; }
     public DbSet<PatientMedicationRefill>? PatientMedicationRefill { get; set; }
     public DbSet<CheckUp>? CheckUp { get; set; }

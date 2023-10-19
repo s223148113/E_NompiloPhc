@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace E_NompiloPhc.Models.GBV
 {
-    public class WalkInAppointment
+    public class UserAppointment
     {
         [Key]
         public int Id { get; set; }
@@ -17,11 +17,13 @@ namespace E_NompiloPhc.Models.GBV
 
         public string ReasonForVisit { get; set; }
         [Required]
-
-        public string Email { get; set; }
-
+        public string Consulatation { get; set; }
         [Required]
+        public string Email { get; set; }
+        [Required]
+
         public int PhoneNumber { get; set; }
+        [Required]
 
         [Display(Name = "Date/Time")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]

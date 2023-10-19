@@ -1,0 +1,91 @@
+﻿@model IEnumerable<E_NompiloPhc.Models.GBV.RefillDelivery>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliverName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliverLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryDepartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryArrival)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PHCName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorApprover)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliverYesNo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliverName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliverLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryDepartment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryArrival)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PHCName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorApprover)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliverYesNo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
