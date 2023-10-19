@@ -8,6 +8,8 @@ using E_NompiloPhc.Models.Referrals;
 using E_NompiloPhc.Models.Nutrition;
 using System.Reflection.Emit;
 using E_NompiloPhc.Models.GBV;
+using Microsoft.Build.Evaluation;
+using E_NompiloPhc.Controllers;
 
 namespace E_NompiloPhc.Areas.Identity.Data;
 
@@ -17,6 +19,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         : base(options)
     {
     }
+    //public DbSet<ProjectRole> ProjectRoles { get; set; }
     public DbSet<Unit> Units { get; set; }
     public DbSet<Brand> Brands { get; set; }
     public DbSet<Category> Categories { get; set; }
