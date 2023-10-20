@@ -5,35 +5,32 @@ namespace E_NompiloPhc.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly RoleManager<IdentityRole> roleManager;
+
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public AdminController(RoleManager<IdentityRole> roleManager)
         {
-            this.roleManager = roleManager;
-        }
-       
-        
-        public IActionResult Index()
-        {
-            return View();
+            _roleManager = roleManager;
         }
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult CreateRole()
         {
             return View();
         }
-        //[HttpPost]
-        //public async Task<IActionResult>Create(ProjectRole role)
-        //{
-        //    var roleExist = await roleManager.RoleExistsAsync(role.RoleName);
-        //    if (roleExist)
-        //    {
-        //        var result = await roleManager.CreateAsync(new IdentityRole(role.RoleName));
 
-        //    }
-        
-        //    return View();
-        //}
+        [HttpPost]
+        public async Task<IActionResult> CreateRole(string roleName)
+        {
+            if (string.IsNullOrEmpty(roleName))
+            {
+                return BadRequest();
+            }
+
+            var newRole = new IdentityRole { Name = roleName };
+            await _roleManager.CreateAsync(newRole);
+
+            return Ok();
+        }
+
     }
-    
 }

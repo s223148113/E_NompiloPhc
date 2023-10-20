@@ -808,13 +808,17 @@ namespace E_NompiloPhc.Migrations
                     b.ToTable("StaffLogTime");
                 });
 
-            modelBuilder.Entity("E_NompiloPhc.Models.GBV.VirtualAppointment", b =>
+            modelBuilder.Entity("E_NompiloPhc.Models.GBV.UserAppointment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Consulatation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -842,41 +846,6 @@ namespace E_NompiloPhc.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VirtualAppointment");
-                });
-
-            modelBuilder.Entity("E_NompiloPhc.Models.GBV.WalkInAppointment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ReasonForVisit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Time")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WalkInAppointment");
                 });
 
             modelBuilder.Entity("E_NompiloPhc.Models.Nutrition.Anthropometry", b =>

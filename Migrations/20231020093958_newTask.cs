@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_NompiloPhc.Migrations
 {
-    public partial class dbcon2 : Migration
+    public partial class newTask : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -298,7 +298,8 @@ namespace E_NompiloPhc.Migrations
                     Fat = table.Column<double>(type: "float", nullable: false),
                     Fiber = table.Column<double>(type: "float", nullable: false),
                     Vitamins = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Minerals = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
+                    Minerals = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    PatientInfoID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -356,7 +357,15 @@ namespace E_NompiloPhc.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PatientEmail = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PatientEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeliverName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeliverLastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeliveryDepartment = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DepartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeliveryArrival = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PHCName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DoctorApprover = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DeliverYesNo = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -516,7 +525,7 @@ namespace E_NompiloPhc.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserInputModel",
+                name: "UserInputModels",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -533,6 +542,39 @@ namespace E_NompiloPhc.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserPreferences",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ChosenContraceptiveId = table.Column<int>(type: "int", nullable: false),
+                    DateOfChoice = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserPreferences", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserTrackingModels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TrackingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MenstrualCycleDay = table.Column<int>(type: "int", nullable: false),
+                    BasalBodyTemperature = table.Column<double>(type: "float", nullable: false),
+                    HasOvulationTest = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTrackingModels", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "VirtualAppointment",
                 columns: table => new
                 {
@@ -541,6 +583,7 @@ namespace E_NompiloPhc.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReasonForVisit = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Consulatation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<int>(type: "int", nullable: false),
                     Time = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -548,24 +591,6 @@ namespace E_NompiloPhc.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_VirtualAppointment", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WalkInAppointment",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReasonForVisit = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
-                    Time = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WalkInAppointment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -675,7 +700,7 @@ namespace E_NompiloPhc.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Anthropometry",
+                name: "Antropometry",
                 columns: table => new
                 {
                     anthroID = table.Column<int>(type: "int", nullable: false)
@@ -694,9 +719,9 @@ namespace E_NompiloPhc.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Anthropometry", x => x.anthroID);
+                    table.PrimaryKey("PK_Antropometry", x => x.anthroID);
                     table.ForeignKey(
-                        name: "FK_Anthropometry_PatientInfos_PatientInfoID",
+                        name: "FK_Antropometry_PatientInfos_PatientInfoID",
                         column: x => x.PatientInfoID,
                         principalTable: "PatientInfos",
                         principalColumn: "PatientInfoID",
@@ -899,6 +924,29 @@ namespace E_NompiloPhc.Migrations
                     table.PrimaryKey("PK_Screening", x => x.ScreeningId);
                     table.ForeignKey(
                         name: "FK_Screening_PatientInfos_PatientInfoID",
+                        column: x => x.PatientInfoID,
+                        principalTable: "PatientInfos",
+                        principalColumn: "PatientInfoID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Screening2",
+                columns: table => new
+                {
+                    ScreeningId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ExtremeBMI = table.Column<double>(type: "float", nullable: false),
+                    WeightLoss = table.Column<double>(type: "float", nullable: false),
+                    ReducedIntake = table.Column<double>(type: "float", nullable: false),
+                    SevereIllness = table.Column<double>(type: "float", nullable: false),
+                    RiskScore = table.Column<int>(type: "int", nullable: false),
+                    PatientInfoID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Screening2", x => x.ScreeningId);
+                    table.ForeignKey(
+                        name: "FK_Screening2_PatientInfos_PatientInfoID",
                         column: x => x.PatientInfoID,
                         principalTable: "PatientInfos",
                         principalColumn: "PatientInfoID");
@@ -1111,8 +1159,8 @@ namespace E_NompiloPhc.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Anthropometry_PatientInfoID",
-                table: "Anthropometry",
+                name: "IX_Antropometry_PatientInfoID",
+                table: "Antropometry",
                 column: "PatientInfoID",
                 unique: true);
 
@@ -1259,6 +1307,11 @@ namespace E_NompiloPhc.Migrations
                 filter: "[PatientInfoID] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Screening2_PatientInfoID",
+                table: "Screening2",
+                column: "PatientInfoID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SGA_PatientInfoID",
                 table: "SGA",
                 column: "PatientInfoID",
@@ -1275,7 +1328,7 @@ namespace E_NompiloPhc.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Anthropometry");
+                name: "Antropometry");
 
             migrationBuilder.DropTable(
                 name: "Appointments");
@@ -1383,6 +1436,9 @@ namespace E_NompiloPhc.Migrations
                 name: "Screening");
 
             migrationBuilder.DropTable(
+                name: "Screening2");
+
+            migrationBuilder.DropTable(
                 name: "SGA");
 
             migrationBuilder.DropTable(
@@ -1392,13 +1448,16 @@ namespace E_NompiloPhc.Migrations
                 name: "StaffLogTime");
 
             migrationBuilder.DropTable(
-                name: "UserInputModel");
+                name: "UserInputModels");
+
+            migrationBuilder.DropTable(
+                name: "UserPreferences");
+
+            migrationBuilder.DropTable(
+                name: "UserTrackingModels");
 
             migrationBuilder.DropTable(
                 name: "VirtualAppointment");
-
-            migrationBuilder.DropTable(
-                name: "WalkInAppointment");
 
             migrationBuilder.DropTable(
                 name: "Counselors");

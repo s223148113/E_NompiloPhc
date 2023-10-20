@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_NompiloPhc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231009075739_dbcon2")]
-    partial class dbcon2
+    [Migration("20231020093958_newTask")]
+    partial class newTask
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -491,7 +491,63 @@ namespace E_NompiloPhc.Migrations
                     b.Property<bool>("Smokes")
                         .HasColumnType("bit");
 
-                    b.ToTable("UserInputModel");
+                    b.ToTable("UserInputModels");
+                });
+
+            modelBuilder.Entity("E_NompiloPhc.Models.FamilyPlanning.UserPreference", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ChosenContraceptiveId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateOfChoice")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserPreferences");
+                });
+
+            modelBuilder.Entity("E_NompiloPhc.Models.FamilyPlanning.UserTrackingModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<double>("BasalBodyTemperature")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("HasOvulationTest")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MenstrualCycleDay")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TrackingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserTrackingModels");
                 });
 
             modelBuilder.Entity("E_NompiloPhc.Models.GBV.CheckUp", b =>
@@ -553,23 +609,6 @@ namespace E_NompiloPhc.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CheckUp");
-                });
-
-            modelBuilder.Entity("E_NompiloPhc.Models.GBV.MedicationRefillDelivery", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("PatientEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MedicationRefillDelivery");
                 });
 
             modelBuilder.Entity("E_NompiloPhc.Models.GBV.PatientMedicationRefill", b =>
@@ -680,6 +719,53 @@ namespace E_NompiloPhc.Migrations
                     b.ToTable("PHCMedicationRefill");
                 });
 
+            modelBuilder.Entity("E_NompiloPhc.Models.GBV.RefillDelivery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("DeliverLastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeliverName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeliverYesNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DeliveryArrival")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeliveryDepartment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DepartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DoctorApprover")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PHCName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PatientEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MedicationRefillDelivery");
+                });
+
             modelBuilder.Entity("E_NompiloPhc.Models.GBV.StaffLogTime", b =>
                 {
                     b.Property<int>("Id")
@@ -724,13 +810,17 @@ namespace E_NompiloPhc.Migrations
                     b.ToTable("StaffLogTime");
                 });
 
-            modelBuilder.Entity("E_NompiloPhc.Models.GBV.VirtualAppointment", b =>
+            modelBuilder.Entity("E_NompiloPhc.Models.GBV.UserAppointment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Consulatation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -758,41 +848,6 @@ namespace E_NompiloPhc.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VirtualAppointment");
-                });
-
-            modelBuilder.Entity("E_NompiloPhc.Models.GBV.WalkInAppointment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ReasonForVisit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Time")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WalkInAppointment");
                 });
 
             modelBuilder.Entity("E_NompiloPhc.Models.Nutrition.Anthropometry", b =>
@@ -841,7 +896,7 @@ namespace E_NompiloPhc.Migrations
                     b.HasIndex("PatientInfoID")
                         .IsUnique();
 
-                    b.ToTable("Anthropometry");
+                    b.ToTable("Antropometry");
                 });
 
             modelBuilder.Entity("E_NompiloPhc.Models.Nutrition.Biochemicals", b =>
@@ -1124,6 +1179,9 @@ namespace E_NompiloPhc.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int?>("PatientInfoID")
+                        .HasColumnType("int");
+
                     b.Property<double>("Protein")
                         .HasColumnType("float");
 
@@ -1323,6 +1381,39 @@ namespace E_NompiloPhc.Migrations
                         .HasFilter("[PatientInfoID] IS NOT NULL");
 
                     b.ToTable("Screening");
+                });
+
+            modelBuilder.Entity("E_NompiloPhc.Models.Nutrition.Screening2", b =>
+                {
+                    b.Property<int>("ScreeningId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScreeningId"), 1L, 1);
+
+                    b.Property<double>("ExtremeBMI")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("PatientInfoID")
+                        .HasColumnType("int");
+
+                    b.Property<double>("ReducedIntake")
+                        .HasColumnType("float");
+
+                    b.Property<int>("RiskScore")
+                        .HasColumnType("int");
+
+                    b.Property<double>("SevereIllness")
+                        .HasColumnType("float");
+
+                    b.Property<double>("WeightLoss")
+                        .HasColumnType("float");
+
+                    b.HasKey("ScreeningId");
+
+                    b.HasIndex("PatientInfoID");
+
+                    b.ToTable("Screening2");
                 });
 
             modelBuilder.Entity("E_NompiloPhc.Models.Nutrition.SGA", b =>
@@ -2015,6 +2106,15 @@ namespace E_NompiloPhc.Migrations
                     b.HasOne("E_NompiloPhc.Models.Nutrition.PatientInfo", "PatientInfo")
                         .WithOne("Screening")
                         .HasForeignKey("E_NompiloPhc.Models.Nutrition.Screening", "PatientInfoID");
+
+                    b.Navigation("PatientInfo");
+                });
+
+            modelBuilder.Entity("E_NompiloPhc.Models.Nutrition.Screening2", b =>
+                {
+                    b.HasOne("E_NompiloPhc.Models.Nutrition.PatientInfo", "PatientInfo")
+                        .WithMany()
+                        .HasForeignKey("PatientInfoID");
 
                     b.Navigation("PatientInfo");
                 });
